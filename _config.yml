@@ -1,0 +1,22 @@
+# GitHub Pages configuration for A10city Labs
+
+# Site settings
+title: A10city Labs
+description: Shaping the Future of Digital Trust in the Age of AI through Education and Research
+url: https://a10city.com
+
+# Exclude files
+exclude:
+  - README.md
+  - .gitignore
+
+# Permalink structure (clean URLs)
+permalink: /:title/
+
+# Plugins
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Build settings
+markdown: kramdown

@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Unbounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(135deg, #003D6B 0%, #00568F 100%);
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Decorative background pattern */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(191, 255, 0, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(191, 255, 0, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container {
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+}
+
+.logo {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.tagline {
+    font-size: 1.3rem;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    color: #BFFF00;
+    letter-spacing: 1px;
+}
+
+.description {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    color: #FFFFFF;
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    transform: translateY(-5px);
+}
+
+.icon-wrapper {
+    background: linear-gradient(135deg, #BFFF00 0%, #A0E000 100%);
+    color: #003D6B;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.7rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(191, 255, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.icon-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-link:hover .icon-wrapper {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(191, 255, 0, 0.5);
+}
+
+.social-link:hover .icon-wrapper::before {
+    opacity: 1;
+}
+
+.social-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 0.3s ease;
+}
+
+.social-link:hover .social-name {
+    color: #BFFF00;
+}
+
+.icon {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2rem;
+        letter-spacing: 1px;
+    }
+    
+    .tagline {
+        font-size: 1.1rem;
+    }
+    
+    .description {
+        font-size: 0.95rem;
+    }
+    
+    .social-links {
+        gap: 1.5rem;
+    }
+    
+    .logo {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .tagline {
+        font-size: 0.95rem;
+    }
+    
+    .logo {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .icon-wrapper {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .icon {
+        width: 24px;
+        height: 24px;
+    }
+}

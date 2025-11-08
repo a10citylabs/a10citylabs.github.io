@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Unbounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: #000000;
+    background: linear-gradient(135deg, #001f3f 0%, #0056b3 50%, #0074d9 100%);
     color: #FFFFFF;
     display: flex;
     flex-direction: column;

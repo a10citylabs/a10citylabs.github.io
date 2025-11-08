@@ -33,11 +33,15 @@
         
         navLinks.forEach(link => {
             link.classList.remove('active');
-            const href = link.getAttribute('href').replace('.html', '');
+            const href = link.getAttribute('href');
             
-            if (currentPath === '/' && href === 'index.html') {
+            // Exact match for home page
+            if (currentPath === '/' && href === '/') {
                 link.classList.add('active');
-            } else if (currentPath.includes(href)) {
+            } 
+            // Match for other pages - must match exactly or start with the path followed by /
+            else if (href !== '/' && currentPath !== '/' && 
+                     (currentPath === href || currentPath.startsWith(href + '/'))) {
                 link.classList.add('active');
             }
         });

@@ -108,7 +108,7 @@ body::before {
 /* Home Page Container */
 .container {
     text-align: center;
-    padding: 2rem;
+    padding: 6rem 2rem 2rem;
     position: relative;
     z-index: 1;
     max-width: 900px;

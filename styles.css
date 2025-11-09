@@ -183,11 +183,11 @@ body::before {
     z-index: 1;
 }
 
-/* Logo - Circle centered in the triangle */
+/* Logo - Circle centered in the triangle with spacing */
 .logo {
     position: absolute;
-    width: 120px;
-    height: 120px;
+    width: 105px;
+    height: 105px;
     top: 66.67%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -633,8 +633,8 @@ h1 {
     }
 
     .logo {
-        width: 96px;
-        height: 96px;
+        width: 84px;
+        height: 84px;
     }
 
     .cards-grid {
@@ -688,8 +688,8 @@ h1 {
     }
     
     .logo {
-        width: 84px;
-        height: 84px;
+        width: 73px;
+        height: 73px;
     }
     
     .icon-wrapper {

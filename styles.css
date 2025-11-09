@@ -149,39 +149,18 @@ body::before {
     letter-spacing: 0.5px;
 }
 
-/* Logo with Triangle */
-.logo-wrapper {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 2rem;
-}
-
-.logo-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 200px;
-    height: 173px;
-    transform: translate(-50%, -50%);
-    background: transparent;
-    border: 2px solid rgba(191, 255, 0, 0.4);
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    z-index: 1;
-    animation: float 3s ease-in-out infinite;
-    box-shadow: 0 0 20px rgba(191, 255, 0, 0.2);
-}
-
+/* Logo */
 .logo {
     width: 140px;
     height: 140px;
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
     display: block;
     filter: drop-shadow(0 10px 30px rgba(191, 255, 0, 0.5));
     animation: float 3s ease-in-out infinite;
     border-radius: 50%;
     object-fit: cover;
-    position: relative;
-    z-index: 2;
 }
 
 @keyframes float {
@@ -623,11 +602,6 @@ h1 {
         height: 110px;
     }
 
-    .logo-wrapper::before {
-        width: 157px;
-        height: 136px;
-    }
-
     .cards-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -671,11 +645,6 @@ h1 {
     .logo {
         width: 90px;
         height: 90px;
-    }
-
-    .logo-wrapper::before {
-        width: 129px;
-        height: 111px;
     }
     
     .icon-wrapper {

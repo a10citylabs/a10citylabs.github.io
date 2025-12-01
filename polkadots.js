@@ -1,6 +1,6 @@
 /**
- * A10city Labs - WebGL Polkadot Background Effect
- * Festive animated dots with bright glowing shadows
+ * A10city Labs - WebGL Triangle Background Effect
+ * Animated triangles with glowing shadows matching website theme
  */
 
 (function() {
@@ -8,24 +8,18 @@
 
     // Configuration
     const CONFIG = {
-        maxDots: 9,            // Maximum dots on screen at once
-        spawnInterval: 500,       // ms between spawn attempts (faster spawning)
-        minLifetime: 3000,       // Minimum dot lifetime in ms
-        maxLifetime: 4000,       // Maximum dot lifetime in ms
-        minSize: 50,             // Minimum dot radius
-        maxSize: 100,            // Maximum dot radius
+        maxDots: 10,              // Maximum triangles on screen at once
+        spawnInterval: 1000,      // ms between spawn attempts
+        minLifetime: 4000,       // Minimum triangle lifetime in ms
+        maxLifetime: 6000,       // Maximum triangle lifetime in ms
+        minSize: 70,             // Minimum triangle size
+        maxSize: 80,            // Maximum triangle size
         colors: [
-            // Festive bright colors with higher opacity
-            [0.75, 1.0, 0.0, 0.85],   // Lime green (BFFF00) - main accent
-            [1.0, 0.84, 0.0, 0.8],    // Gold
-            [1.0, 0.4, 0.7, 0.75],    // Hot pink
-            [0.0, 1.0, 1.0, 0.75],    // Cyan
-            [1.0, 0.5, 0.0, 0.8],     // Orange
-            [0.6, 0.4, 1.0, 0.75],    // Purple
-            [1.0, 1.0, 1.0, 0.7],     // White sparkle
-            [0.0, 0.8, 1.0, 0.75],    // Sky blue
-            [1.0, 0.2, 0.4, 0.75],    // Coral red
-            [0.4, 1.0, 0.6, 0.75],    // Mint green
+            // Website theme colors - blues and lime green accent
+            [0.0, 0.34, 0.7, 0.75],   // Blue (#0056b3)
+            [0.0, 0.46, 0.85, 0.75],  // Blue (#0074d9)
+            [0.0, 0.5, 0.9, 0.7],     // Bright blue
+            [0.0, 0.4, 0.75, 0.75],   // Medium blue
         ]
     };
 
@@ -35,39 +29,70 @@
         attribute float a_size;
         attribute vec4 a_color;
         attribute float a_alpha;
+        attribute float a_rotation;
         
         varying vec4 v_color;
+        varying float v_rotation;
         
         void main() {
             gl_Position = vec4(a_position, 0.0, 1.0);
             gl_PointSize = a_size;
             v_color = vec4(a_color.rgb, a_color.a * a_alpha);
+            v_rotation = a_rotation;
         }
     `;
 
-    // Fragment shader - renders glowing circles with bright shadows
+    // Fragment shader - renders glowing triangles
     const fragmentShaderSource = `
         precision mediump float;
         
         varying vec4 v_color;
+        varying float v_rotation;
+        
+        // Function to check if point is inside triangle
+        float triangleSDF(vec2 p) {
+            // Equilateral triangle vertices centered at origin
+            float k = sqrt(3.0);
+            p.x = abs(p.x) - 0.5;
+            p.y = p.y + 0.5 / k;
+            if(p.x + k * p.y > 0.0) {
+                p = vec2(p.x - k * p.y, -k * p.x - p.y) / 2.0;
+            }
+            p.x -= clamp(p.x, -1.0, 0.0);
+            return -length(p) * sign(p.y);
+        }
         
         void main() {
+            // Transform point coordinates to centered space
             vec2 coord = gl_PointCoord - vec2(0.5);
-            float dist = length(coord);
             
-            // Core circle with soft edge
-            float core = 1.0 - smoothstep(0.2, 0.4, dist);
+            // Apply rotation
+            float c = cos(v_rotation);
+            float s = sin(v_rotation);
+            vec2 rotatedCoord = vec2(
+                coord.x * c - coord.y * s,
+                coord.x * s + coord.y * c
+            );
             
-            // Bright outer glow (multiple layers for festive effect)
-            float glow1 = exp(-dist * 4.0) * 0.6;
-            float glow2 = exp(-dist * 2.5) * 0.4;
-            float glow3 = exp(-dist * 1.5) * 0.25;
+            // Scale for triangle
+            vec2 p = rotatedCoord * 2.8;
             
-            // Combine glows for bright halo effect
-            float totalGlow = glow1 + glow2 + glow3;
+            // Get signed distance to triangle
+            float d = triangleSDF(p);
+            
+            // Core triangle with soft edge
+            float core = 1.0 - smoothstep(-0.1, 0.05, d);
+            
+            // Outer glow layers
+            float glow1 = exp(d * 6.0) * 0.5;
+            float glow2 = exp(d * 3.5) * 0.35;
+            float glow3 = exp(d * 2.0) * 0.2;
+            
+            // Combine glows for halo effect
+            float totalGlow = (glow1 + glow2 + glow3) * step(d, 0.5);
             
             // Bright inner highlight for sparkle
-            float highlight = exp(-dist * 8.0) * 0.5;
+            float highlight = exp(d * 10.0) * 0.4 * step(d, 0.0);
             
             // Final alpha combines core and glows
             float alpha = core + totalGlow;
@@ -75,8 +100,8 @@
             // Brighten the color towards white in the center for sparkle
             vec3 brightColor = mix(v_color.rgb, vec3(1.0), highlight);
             
-            // Add slight color boost for festive vibrancy
-            brightColor = brightColor * 1.2;
+            // Add slight color boost for vibrancy
+            brightColor = brightColor * 1.15;
             
             gl_FragColor = vec4(brightColor, v_color.a * alpha);
         }
@@ -117,7 +142,7 @@
             });
 
             if (!this.gl) {
-                console.warn('WebGL not supported, polkadot effect disabled');
+                console.warn('WebGL not supported, triangle effect disabled');
                 return;
             }
 
@@ -125,7 +150,7 @@
             this.resize();
             window.addEventListener('resize', () => this.resize());
             
-            // Pre-populate with dots for instant festive feel
+            // Pre-populate with triangles
             this.prePopulateDots();
             
             this.animate();
@@ -156,12 +181,14 @@
             this.sizeLocation = gl.getAttribLocation(this.program, 'a_size');
             this.colorLocation = gl.getAttribLocation(this.program, 'a_color');
             this.alphaLocation = gl.getAttribLocation(this.program, 'a_alpha');
+            this.rotationLocation = gl.getAttribLocation(this.program, 'a_rotation');
 
             // Create buffers
             this.positionBuffer = gl.createBuffer();
             this.sizeBuffer = gl.createBuffer();
             this.colorBuffer = gl.createBuffer();
             this.alphaBuffer = gl.createBuffer();
+            this.rotationBuffer = gl.createBuffer();
 
             // Enable additive blending for bright glowing effect
             gl.enable(gl.BLEND);
@@ -194,7 +221,7 @@
         }
 
         prePopulateDots() {
-            // Spawn initial batch of dots with staggered birth times
+            // Spawn initial batch of triangles with staggered birth times
             const currentTime = performance.now();
             const targetDots = Math.floor(CONFIG.maxDots * 0.7); // Start with 70% of max
             
@@ -210,7 +237,9 @@
                     size: CONFIG.minSize + Math.random() * (CONFIG.maxSize - CONFIG.minSize),
                     color: color,
                     birthTime: currentTime - birthOffset,
-                    lifetime: lifetime
+                    lifetime: lifetime,
+                    rotation: Math.random() * Math.PI * 2, // Random initial rotation
+                    rotationSpeed: (Math.random() - 0.5) * 0.002 // Slow rotation speed
                 });
             }
         }
@@ -227,20 +256,27 @@
                 size: CONFIG.minSize + Math.random() * (CONFIG.maxSize - CONFIG.minSize),
                 color: color,
                 birthTime: performance.now(),
-                lifetime: lifetime
+                lifetime: lifetime,
+                rotation: Math.random() * Math.PI * 2,
+                rotationSpeed: (Math.random() - 0.5) * 0.002
             });
         }
 
         updateDots(currentTime) {
-            // Remove expired dots
+            // Remove expired dots and update rotations
             this.dots = this.dots.filter(dot => {
                 const age = currentTime - dot.birthTime;
-                return age < dot.lifetime;
+                if (age < dot.lifetime) {
+                    // Update rotation
+                    dot.rotation += dot.rotationSpeed * 16; // Approximate frame time
+                    return true;
+                }
+                return false;
             });
 
-            // Spawn new dots more frequently for festive density
+            // Spawn new triangles
             if (currentTime - this.lastSpawnTime > CONFIG.spawnInterval) {
-                // Spawn multiple dots at once to maintain density
+                // Spawn multiple triangles at once to maintain density
                 const dotsToSpawn = Math.min(3, CONFIG.maxDots - this.dots.length);
                 for (let i = 0; i < dotsToSpawn; i++) {
                     if (Math.random() < 0.85) { // 85% chance to spawn
@@ -277,6 +313,7 @@
             const sizes = [];
             const colors = [];
             const alphas = [];
+            const rotations = [];
 
             const dpr = window.devicePixelRatio || 1;
 
@@ -285,6 +322,7 @@
                 sizes.push(dot.size * dpr);
                 colors.push(...dot.color);
                 alphas.push(this.calculateAlpha(dot, currentTime));
+                rotations.push(dot.rotation);
             }
 
             // Upload position data
@@ -310,6 +348,12 @@
             gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(alphas), gl.DYNAMIC_DRAW);
             gl.enableVertexAttribArray(this.alphaLocation);
             gl.vertexAttribPointer(this.alphaLocation, 1, gl.FLOAT, false, 0, 0);
+
+            // Upload rotation data
+            gl.bindBuffer(gl.ARRAY_BUFFER, this.rotationBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(rotations), gl.DYNAMIC_DRAW);
+            gl.enableVertexAttribArray(this.rotationLocation);
+            gl.vertexAttribPointer(this.rotationLocation, 1, gl.FLOAT, false, 0, 0);
 
             // Draw points
             gl.drawArrays(gl.POINTS, 0, this.dots.length);

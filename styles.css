@@ -20,10 +20,23 @@ body {
     overflow-x: hidden;
 }
 
-/* Decorative background pattern */
+/* Background gradient layer */
 body::before {
     content: '';
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #001f3f 0%, #0056b3 50%, #0074d9 100%);
+    pointer-events: none;
+    z-index: -2;
+}
+
+/* Decorative background pattern */
+body::after {
+    content: '';
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -32,7 +45,7 @@ body::before {
         radial-gradient(circle at 20% 80%, rgba(191, 255, 0, 0.03) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, rgba(191, 255, 0, 0.03) 0%, transparent 50%);
     pointer-events: none;
-    z-index: 0;
+    z-index: -1;
 }
 
 /* Navigation Styles */
@@ -114,7 +127,7 @@ body::before {
     text-align: center;
     padding: 6rem 2rem 2rem;
     position: relative;
-    z-index: 1;
+    z-index: 2;
     max-width: 900px;
     margin: auto;
     display: flex;
@@ -129,7 +142,7 @@ body::before {
     margin: 0 auto;
     padding: 6rem 2rem 4rem;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .page-header {

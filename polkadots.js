@@ -1,6 +1,6 @@
 /**
  * A10city Labs - WebGL Polkadot Background Effect
- * Sparse animated dots that pop and fade in theme colors
+ * Festive animated dots with bright glowing shadows
  */
 
 (function() {
@@ -8,18 +8,24 @@
 
     // Configuration
     const CONFIG = {
-        maxDots: 2000,           // Maximum dots on screen at once
-        spawnInterval: 600,    // ms between spawn attempts
-        minLifetime: 2500,     // Minimum dot lifetime in ms
-        maxLifetime: 5000,     // Maximum dot lifetime in ms
-        minSize: 20,            // Minimum dot radius
-        maxSize:500,           // Maximum dot radius
+        maxDots: 9,            // Maximum dots on screen at once
+        spawnInterval: 500,       // ms between spawn attempts (faster spawning)
+        minLifetime: 3000,       // Minimum dot lifetime in ms
+        maxLifetime: 4000,       // Maximum dot lifetime in ms
+        minSize: 50,             // Minimum dot radius
+        maxSize: 100,            // Maximum dot radius
         colors: [
-            [0.75, 1.0, 0.0, 0.6],    // Lime green (BFFF00) - main accent
-            [0.75, 1.0, 0.0, 0.4],    // Lime green - softer
-            [1.0, 1.0, 1.0, 0.25],    // White - subtle
-            [0.0, 0.46, 0.85, 0.4],   // Blue (0074D9)
-            [0.63, 0.88, 0.0, 0.5],   // Slightly darker lime (A0E000)
+            // Festive bright colors with higher opacity
+            [0.75, 1.0, 0.0, 0.85],   // Lime green (BFFF00) - main accent
+            [1.0, 0.84, 0.0, 0.8],    // Gold
+            [1.0, 0.4, 0.7, 0.75],    // Hot pink
+            [0.0, 1.0, 1.0, 0.75],    // Cyan
+            [1.0, 0.5, 0.0, 0.8],     // Orange
+            [0.6, 0.4, 1.0, 0.75],    // Purple
+            [1.0, 1.0, 1.0, 0.7],     // White sparkle
+            [0.0, 0.8, 1.0, 0.75],    // Sky blue
+            [1.0, 0.2, 0.4, 0.75],    // Coral red
+            [0.4, 1.0, 0.6, 0.75],    // Mint green
         ]
     };
 
@@ -39,7 +45,7 @@
         }
     `;
 
-    // Fragment shader - renders smooth circles
+    // Fragment shader - renders glowing circles with bright shadows
     const fragmentShaderSource = `
         precision mediump float;
         
@@ -49,13 +55,30 @@
             vec2 coord = gl_PointCoord - vec2(0.5);
             float dist = length(coord);
             
-            // Smooth circle with soft edge
-            float alpha = 1.0 - smoothstep(0.35, 0.5, dist);
+            // Core circle with soft edge
+            float core = 1.0 - smoothstep(0.2, 0.4, dist);
             
-            // Add subtle glow effect
-            float glow = exp(-dist * 3.0) * 0.3;
+            // Bright outer glow (multiple layers for festive effect)
+            float glow1 = exp(-dist * 4.0) * 0.6;
+            float glow2 = exp(-dist * 2.5) * 0.4;
+            float glow3 = exp(-dist * 1.5) * 0.25;
             
-            gl_FragColor = vec4(v_color.rgb, v_color.a * (alpha + glow));
+            // Combine glows for bright halo effect
+            float totalGlow = glow1 + glow2 + glow3;
+            
+            // Bright inner highlight for sparkle
+            float highlight = exp(-dist * 8.0) * 0.5;
+            
+            // Final alpha combines core and glows
+            float alpha = core + totalGlow;
+            
+            // Brighten the color towards white in the center for sparkle
+            vec3 brightColor = mix(v_color.rgb, vec3(1.0), highlight);
+            
+            // Add slight color boost for festive vibrancy
+            brightColor = brightColor * 1.2;
+            
+            gl_FragColor = vec4(brightColor, v_color.a * alpha);
         }
     `;
 
@@ -101,6 +124,10 @@
             this.setupWebGL();
             this.resize();
             window.addEventListener('resize', () => this.resize());
+            
+            // Pre-populate with dots for instant festive feel
+            this.prePopulateDots();
+            
             this.animate();
         }
 
@@ -136,9 +163,9 @@
             this.colorBuffer = gl.createBuffer();
             this.alphaBuffer = gl.createBuffer();
 
-            // Enable blending for transparency
+            // Enable additive blending for bright glowing effect
             gl.enable(gl.BLEND);
-            gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+            gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
         }
 
         createShader(type, source) {
@@ -166,6 +193,28 @@
             }
         }
 
+        prePopulateDots() {
+            // Spawn initial batch of dots with staggered birth times
+            const currentTime = performance.now();
+            const targetDots = Math.floor(CONFIG.maxDots * 0.7); // Start with 70% of max
+            
+            for (let i = 0; i < targetDots; i++) {
+                const color = CONFIG.colors[Math.floor(Math.random() * CONFIG.colors.length)];
+                const lifetime = CONFIG.minLifetime + Math.random() * (CONFIG.maxLifetime - CONFIG.minLifetime);
+                // Stagger birth times so they don't all fade at once
+                const birthOffset = Math.random() * lifetime * 0.8;
+                
+                this.dots.push({
+                    x: (Math.random() * 2 - 1),
+                    y: (Math.random() * 2 - 1),
+                    size: CONFIG.minSize + Math.random() * (CONFIG.maxSize - CONFIG.minSize),
+                    color: color,
+                    birthTime: currentTime - birthOffset,
+                    lifetime: lifetime
+                });
+            }
+        }
+
         spawnDot() {
             if (this.dots.length >= CONFIG.maxDots) return;
 
@@ -189,10 +238,14 @@
                 return age < dot.lifetime;
             });
 
-            // Spawn new dots periodically
+            // Spawn new dots more frequently for festive density
             if (currentTime - this.lastSpawnTime > CONFIG.spawnInterval) {
-                if (Math.random() < 0.7) { // 70% chance to spawn
-                    this.spawnDot();
+                // Spawn multiple dots at once to maintain density
+                const dotsToSpawn = Math.min(3, CONFIG.maxDots - this.dots.length);
+                for (let i = 0; i < dotsToSpawn; i++) {
+                    if (Math.random() < 0.85) { // 85% chance to spawn
+                        this.spawnDot();
+                    }
                 }
                 this.lastSpawnTime = currentTime;
             }
@@ -202,8 +255,13 @@
             const age = currentTime - dot.birthTime;
             const progress = age / dot.lifetime;
             
-            // Smooth fade in and out using sine curve
-            return Math.sin(progress * Math.PI);
+            // Smooth fade in and out using sine curve with slight sparkle variation
+            const baseAlpha = Math.sin(progress * Math.PI);
+            
+            // Add subtle twinkle effect
+            const twinkle = 1 + Math.sin(age * 0.01) * 0.1;
+            
+            return baseAlpha * twinkle;
         }
 
         render(currentTime) {

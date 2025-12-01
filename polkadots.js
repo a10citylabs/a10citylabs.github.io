@@ -220,6 +220,17 @@
             }
         }
 
+        // Helper to get random X position avoiding center third
+        getRandomX() {
+            // Center third is from -0.333 to 0.333 - avoid this region
+            const isLeft = Math.random() < 0.5;
+            if (isLeft) {
+                return -1 + Math.random() * 0.667; // -1 to -0.333
+            } else {
+                return 0.333 + Math.random() * 0.667; // 0.333 to 1
+            }
+        }
+
         prePopulateDots() {
             // Spawn initial batch of triangles with staggered birth times
             const currentTime = performance.now();
@@ -232,7 +243,7 @@
                 const birthOffset = Math.random() * lifetime * 0.8;
                 
                 this.dots.push({
-                    x: (Math.random() * 2 - 1),
+                    x: this.getRandomX(),
                     y: (Math.random() * 2 - 1),
                     size: CONFIG.minSize + Math.random() * (CONFIG.maxSize - CONFIG.minSize),
                     color: color,
@@ -251,7 +262,7 @@
             const lifetime = CONFIG.minLifetime + Math.random() * (CONFIG.maxLifetime - CONFIG.minLifetime);
             
             this.dots.push({
-                x: (Math.random() * 2 - 1),  // -1 to 1 in clip space
+                x: this.getRandomX(),  // Use helper to avoid center third
                 y: (Math.random() * 2 - 1),
                 size: CONFIG.minSize + Math.random() * (CONFIG.maxSize - CONFIG.minSize),
                 color: color,

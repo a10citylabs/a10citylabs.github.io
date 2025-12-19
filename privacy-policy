@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - A10city Private Limited</title>
+    <meta name="description" content="Privacy Policy of A10city Private Limited. Learn how we collect, use, and protect your personal information.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://a10city.com/privacy-policy">
+    <meta property="og:title" content="Privacy Policy - A10city Private Limited">
+    <meta property="og:description" content="Privacy Policy of A10city Private Limited. Learn how we collect, use, and protect your personal information.">
+    <meta property="og:image" content="https://a10city.com/img/logo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://a10city.com/privacy-policy">
+    <meta property="twitter:site" content="@a10city">
+    <meta property="twitter:title" content="Privacy Policy - A10city Private Limited">
+    <meta property="twitter:description" content="Privacy Policy of A10city Private Limited. Learn how we collect, use, and protect your personal information.">
+    <meta property="twitter:image" content="https://a10city.com/img/logo.png">
+    
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .legal-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(0, 31, 63, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(191, 255, 0, 0.2);
+            border-radius: 16px;
+        }
+        
+        .legal-content h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #BFFF00;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .legal-content h2:first-of-type {
+            margin-top: 0;
+        }
+        
+        .legal-content p {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        
+        .legal-content ul {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        
+        .legal-content li {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .legal-content a {
+            color: #BFFF00;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .legal-content a:hover {
+            opacity: 0.8;
+        }
+        
+        .effective-date {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(191, 255, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-brand">A10city</a>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/courses" class="nav-link">Courses</a></li>
+                <li><a href="/projects" class="nav-link">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <div class="page-header">
+            <h1>Privacy Policy</h1>
+            <p class="page-subtitle">Your privacy matters to us</p>
+        </div>
+
+        <div class="legal-content">
+            <p class="effective-date">Effective Date: 19 December 2025</p>
+
+            <h2>1. Introduction</h2>
+            <p>
+                A10city Private Limited (CIN: U62013TS2025PTC208121), a company incorporated under the Companies Act, 2013 
+                and having its registered office in Telangana, India ("Company", "we", "us", or "our"), is committed to 
+                protecting your privacy and personal data in accordance with the Information Technology Act, 2000, the 
+                Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) 
+                Rules, 2011, and the Digital Personal Data Protection Act, 2023 ("Applicable Laws").
+            </p>
+            <p>
+                This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit 
+                our website <a href="https://a10city.com">a10city.com</a> or communicate with us via email.
+            </p>
+
+            <h2>2. No Use of Cookies</h2>
+            <p>
+                Our website does not use cookies or any similar tracking technologies. We do not track your browsing 
+                behavior, store session information, or use any first-party or third-party cookies. Your browsing 
+                experience on our website is completely cookie-free.
+            </p>
+
+            <h2>3. Information We Collect</h2>
+            <p>
+                We collect personal information only when you voluntarily provide it to us by contacting us via email 
+                at <a href="mailto:info@a10city.com">info@a10city.com</a>. This may include:
+            </p>
+            <ul>
+                <li>Your name</li>
+                <li>Email address</li>
+                <li>Any other information you choose to include in your correspondence</li>
+            </ul>
+            <p>
+                We do not collect any information automatically through our website, and we do not use any analytics 
+                tools that collect personal data.
+            </p>
+
+            <h2>4. Purpose of Data Collection</h2>
+            <p>We use the personal information you provide solely for the following purposes:</p>
+            <ul>
+                <li>To respond to your inquiries and communicate with you</li>
+                <li>To provide information about our services, courses, and projects</li>
+                <li>To comply with legal obligations under Applicable Laws</li>
+            </ul>
+
+            <h2>5. Legal Basis for Processing</h2>
+            <p>
+                Under the Digital Personal Data Protection Act, 2023, we process your personal data based on your 
+                consent, which you provide when you voluntarily contact us via email. You may withdraw your consent 
+                at any time by contacting us.
+            </p>
+
+            <h2>6. Data Retention</h2>
+            <p>
+                We retain your personal information only for as long as necessary to fulfill the purposes for which 
+                it was collected, or as required by Applicable Laws. Email correspondence is typically retained for 
+                a period of three (3) years unless a longer retention period is required by law.
+            </p>
+
+            <h2>7. Data Security</h2>
+            <p>
+                We implement reasonable security practices and procedures as required under the Information Technology 
+                (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011, 
+                to protect your personal information from unauthorized access, disclosure, alteration, or destruction.
+            </p>
+
+            <h2>8. Disclosure of Information</h2>
+            <p>We do not sell, trade, or rent your personal information to third parties. We may disclose your information only:</p>
+            <ul>
+                <li>With your explicit consent</li>
+                <li>To comply with legal obligations or respond to lawful requests from government authorities</li>
+                <li>To protect our rights, privacy, safety, or property</li>
+            </ul>
+
+            <h2>9. Your Rights</h2>
+            <p>Under the Digital Personal Data Protection Act, 2023, you have the following rights:</p>
+            <ul>
+                <li><strong>Right to Access:</strong> You may request confirmation of whether we process your personal data and obtain a copy of such data.</li>
+                <li><strong>Right to Correction:</strong> You may request correction of inaccurate or incomplete personal data.</li>
+                <li><strong>Right to Erasure:</strong> You may request deletion of your personal data, subject to legal retention requirements.</li>
+                <li><strong>Right to Withdraw Consent:</strong> You may withdraw your consent for data processing at any time.</li>
+                <li><strong>Right to Grievance Redressal:</strong> You may raise concerns about our data processing practices.</li>
+            </ul>
+
+            <h2>10. Grievance Officer</h2>
+            <p>
+                In accordance with the Information Technology Act, 2000 and the Digital Personal Data Protection Act, 2023, 
+                if you have any questions, concerns, or grievances regarding this Privacy Policy or our data practices, 
+                please contact our Grievance Officer:
+            </p>
+            <p>
+                <strong>Email:</strong> <a href="mailto:info@a10city.com">info@a10city.com</a><br>
+                <strong>Response Time:</strong> We will acknowledge your grievance within 48 hours and endeavor to resolve 
+                it within 30 days.
+            </p>
+
+            <h2>11. Children's Privacy</h2>
+            <p>
+                Our services are not directed to individuals under the age of 18. We do not knowingly collect personal 
+                data from children. If you believe we have inadvertently collected information from a child, please 
+                contact us immediately.
+            </p>
+
+            <h2>12. Changes to This Privacy Policy</h2>
+            <p>
+                We may update this Privacy Policy from time to time. Any changes will be posted on this page with an 
+                updated effective date. We encourage you to review this Privacy Policy periodically.
+            </p>
+
+            <h2>13. Governing Law</h2>
+            <p>
+                This Privacy Policy is governed by and construed in accordance with the laws of India. Any disputes 
+                arising from this Privacy Policy shall be subject to the exclusive jurisdiction of the courts in 
+                Telangana, India.
+            </p>
+
+            <h2>14. Contact Us</h2>
+            <p>
+                If you have any questions about this Privacy Policy, please contact us at:<br><br>
+                <strong>A10city Private Limited</strong><br>
+                Email: <a href="mailto:info@a10city.com">info@a10city.com</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer - Indian Private Limited Company Compliant -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <!-- Company Information -->
+                <div class="footer-company">
+                    <h3>A10city Private Limited</h3>
+                    <div class="cin-container">
+                        <span class="cin-label">CIN</span>
+                        <span class="cin-value">U62013TS2025PTC208121</span>
+                    </div>
+                    <div class="footer-email">
+                        <a href="mailto:info@a10city.com">info@a10city.com</a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/courses">Courses</a></li>
+                        <li><a href="/projects">Projects</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal Links -->
+                <div class="footer-legal">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2025 <strong>A10city Private Limited</strong>. All rights reserved.
+                </p>
+                <div class="footer-social">
+                    <a href="https://x.com/a10city" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/a10citylabs" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.207 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.youtube.com/@a10citylabs" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="polkadots.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

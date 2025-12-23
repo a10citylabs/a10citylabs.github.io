@@ -265,6 +265,15 @@ body {
     color: var(--lime-primary);
 }
 
+/* Hero Logo Image */
+.hero-logo {
+    max-width: 100%;
+    width: clamp(280px, 50vw, 500px);
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
 .tagline {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 1.25rem;
@@ -1034,6 +1043,10 @@ body {
         padding: 5rem 1.5rem 3rem;
     }
 
+    .hero-logo {
+        width: clamp(220px, 70vw, 400px);
+    }
+
     .cards-grid {
         grid-template-columns: 1fr;
     }
@@ -1078,6 +1091,10 @@ body {
 
     .hero h1 {
         font-size: 2rem;
+    }
+
+    .hero-logo {
+        width: clamp(200px, 80vw, 300px);
     }
 
     .tagline {

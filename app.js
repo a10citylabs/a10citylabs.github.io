@@ -46,9 +46,11 @@
         
         navLinks.forEach(link => {
             const href = link.getAttribute('href');
-            const isActive = currentPath.endsWith(href) || 
-                           (currentPath === '/' && href === 'index.html') ||
-                           (currentPath.endsWith('/') && href === 'index.html');
+            const isHome = href === '/' || href === '/index.html' || href === 'index.html';
+            const isCurrentHome = currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('/index.html');
+            
+            const isActive = (isHome && isCurrentHome) || 
+                           (!isHome && currentPath.endsWith(href));
             
             if (isActive) {
                 link.setAttribute('aria-current', 'page');

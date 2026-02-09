@@ -1019,6 +1019,46 @@ body {
 }
 
 /* ============================================
+   Tagline Typing Animation
+   ============================================ */
+
+.tagline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    white-space: nowrap;
+    min-height: 1.8em;
+}
+
+.tagline-cycle {
+    display: inline-block;
+    min-width: 0;
+    margin-left: 0.3em;
+    color: var(--white);
+}
+
+.tagline-cursor {
+    display: inline-block;
+    color: var(--lime-primary);
+    font-weight: 300;
+    animation: cursor-blink 0.7s steps(1) infinite;
+    margin-left: 1px;
+}
+
+@keyframes cursor-blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Reduced motion: show static text, hide cursor */
+@media (prefers-reduced-motion: reduce) {
+    .tagline-cursor {
+        display: none;
+    }
+}
+
+/* ============================================
    Responsive Design
    ============================================ */
 

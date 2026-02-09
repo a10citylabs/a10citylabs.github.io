@@ -234,6 +234,64 @@
         });
     }
 
+    // ===== Tagline Typing Animation =====
+    function initTaglineAnimation() {
+        const cycleEl = document.querySelector('.tagline-cycle');
+        if (!cycleEl) return;
+
+        const words = ['Content', 'People', 'Everything'];
+        const typeSpeed = 80;      // ms per character typed
+        const deleteSpeed = 50;    // ms per character deleted
+        const holdDelay = 2000;    // ms to hold completed word
+        const pauseBeforeType = 400; // ms pause before typing next word
+
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        // For reduced motion: show static fallback
+        if (prefersReducedMotion.matches) {
+            cycleEl.textContent = 'Everything';
+            return;
+        }
+
+        function tick() {
+            const currentWord = words[wordIndex];
+
+            if (!isDeleting) {
+                // Typing forward
+                charIndex++;
+                cycleEl.textContent = currentWord.substring(0, charIndex);
+
+                if (charIndex === currentWord.length) {
+                    // Word fully typed — hold, then delete
+                    // If it's the last word ("Everything"), hold longer before cycling
+                    const hold = wordIndex === words.length - 1 ? holdDelay * 1.5 : holdDelay;
+                    isDeleting = true;
+                    setTimeout(tick, hold);
+                    return;
+                }
+                setTimeout(tick, typeSpeed);
+            } else {
+                // Deleting
+                charIndex--;
+                cycleEl.textContent = currentWord.substring(0, charIndex);
+
+                if (charIndex === 0) {
+                    // Move to next word
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                    setTimeout(tick, pauseBeforeType);
+                    return;
+                }
+                setTimeout(tick, deleteSpeed);
+            }
+        }
+
+        // Start after a brief initial delay
+        setTimeout(tick, 600);
+    }
+
     // ===== Initialize All Features =====
     function init() {
         initSkipLinks();
@@ -243,6 +301,7 @@
         initSmoothScroll();
         initFormValidation();
         initKeyboardHelpers();
+        initTaglineAnimation();
         
         // Announce page load for SPA-like navigation
         const pageTitle = document.title;

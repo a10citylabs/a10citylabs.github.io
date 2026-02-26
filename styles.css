@@ -327,6 +327,63 @@ body {
 }
 
 /* ============================================
+   Member Section
+   ============================================ */
+
+.member-section {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.member-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.member-badge {
+    background: var(--navy-dark);
+    border: 1px solid rgba(164, 228, 57, 0.15);
+    border-radius: 14px;
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.member-badge:hover {
+    border-color: rgba(164, 228, 57, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.member-logo {
+    max-width: 180px;
+    height: auto;
+    display: block;
+}
+
+@media (max-width: 480px) {
+    .member-section {
+        margin-top: 2.5rem;
+    }
+
+    .member-logo {
+        max-width: 140px;
+    }
+
+    .member-badge {
+        padding: 1rem 1.5rem;
+    }
+}
+
+/* ============================================
    Page Container
    ============================================ */
 
